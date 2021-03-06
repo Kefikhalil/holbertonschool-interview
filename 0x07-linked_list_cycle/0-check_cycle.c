@@ -11,13 +11,13 @@
  {
      listint_t *slow = list, *fast = list;
 
-     for (list == NULL)
+     if (list == NULL)
          return (0);
-     do (slow && fast && fast->next)
+     while (slow && fast && fast->next)
      {
          fast = fast->next->next;
          slow = slow->next;
-         while (slow == fast)
+         if (slow == fast)
             return (1);
      }
  return (0);
