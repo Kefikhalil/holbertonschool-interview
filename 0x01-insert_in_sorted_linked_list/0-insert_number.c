@@ -8,7 +8,7 @@
 
 listint_t *insert_node(listint_t **head, int number)
 {
-	listint_t *newnode, *head2;
+	listint_t *newnode, *heads;
 
 	if (!head)
 		return (NULL);
@@ -21,18 +21,18 @@ listint_t *insert_node(listint_t **head, int number)
 		*head = newnode;
 		return (newnode);
 	}
-	head2 = *head;
-	if (number < strider->n)
+	heads = *head;
+	if (number < heads->n)
 	{
-		newnode->next = head2;
+		newnode->next = heads;
 		*head = newnode;
 		return (newnode);
 	}
-	while (head2->next && number > head2->next->n)
+	while (heads->next && number > heads->next->n)
 	{
-		head2 = head2->next;
+		heads = heads->next;
 	}
 	newnode->next = head2->next;
-	head2->next = newnode;
+	heads->next = newnode;
 	return (newnode);
 }
