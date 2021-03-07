@@ -10,7 +10,7 @@
  * Return: void
  */
 
-void SpongeMenger(int level)
+void menger(int level)
 {
 	int size, a, b, c, d, f;
 
