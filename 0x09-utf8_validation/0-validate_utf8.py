@@ -15,7 +15,7 @@ def validUTF8(data):
             while z & i:
                 byte += 1
                 z = z >> 1
-            if byte== 0:
+            if byte == 0:
                 continue
             if byte == 1 or byte > 4:
                 return False
