@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ reads stdin line by line and computes metrix """
-from sys import stdin
+import sys
 
 status_codes = {
     "200": 0,
