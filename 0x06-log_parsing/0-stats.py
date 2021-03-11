@@ -2,7 +2,7 @@
 """ reads stdin line by line and computes metrics """
 
 
-import sys
+from sys import stdin
 
 if __name__ == "__main__":
 
