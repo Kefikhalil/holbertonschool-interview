@@ -2,7 +2,6 @@
 """ reads stdin line by line and computes metrics """
 
 
-if __name__ == "__main__":
 from sys import stdin
 
 
@@ -20,6 +19,7 @@ def print_log():
             print("{}: {}".format(status, stats[status]))
 
 
+if __name__ == "__main__":
     c = 0
     try:
         for line in stdin:
