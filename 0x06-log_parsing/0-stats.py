@@ -2,9 +2,8 @@
 """ reads stdin line by line and computes metrics """
 
 
-from sys import stdin
+import sys
 
-if __name__ == "__main__":
 
 stats = {
     "200": 0, "301": 0, "400": 0, "401": 0,
@@ -16,6 +15,7 @@ def print_log():
     for status in sorted(stats.keys()):
         if stats[status]:
             print("{}: {}".format(status, stats[status]))
+if __name__ == "__main__":
     c = 0
     try:
         for line in stdin:
