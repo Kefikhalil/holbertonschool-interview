@@ -25,9 +25,9 @@ if __name__ == "__main__":
         for line in stdin:
             try:
                 items = line.split()
-                size += int(items[-1])
-                if items[-2] in status_codes:
-                    stats[items[-2]] += 1
+                size += int(data[-1])
+                if data[-2] in stats:
+                    stats[data[-2]] += 1
             except:
                 pass
             if c == 9:
