@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ UTF8 Validation """
 
+
 def validUTF8(data):
     """ Checks if it's UTF8 valide or not"""
         byte = 0
