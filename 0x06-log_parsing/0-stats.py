@@ -1,45 +1,40 @@
 #!/usr/bin/python3
-""" reads stdin line by line and computes metrix """
-import sys
+""" reads stdin line by line and computes metrics """
 
-status_codes = {
-    "200": 0,
-    "301": 0,
-    "400": 0,
-    "401": 0,
-    "403": 0,
-    "404": 0,
-    "405": 0,
-    "500": 0
-}
 
+from sys import stdin
+
+
+stats = {
+    "200": 0, "301": 0, "400": 0, "401": 0,
+    "403": 0, "404": 0, "405": 0, "500": 0}
 size = 0
 
 
-def print_stats():
-    """Prints the accumulated logs"""
+def print_log():
+    """Prints logs"""
     print("File size: {}".format(size))
-    for status in sorted(status_codes.keys()):
-        if status_codes[status]:
-            print("{}: {}".format(status, status_codes[status]))
+    for status in sorted(stats.keys()):
+        if stats[status]:
+            print("{}: {}".format(status, stats[status]))
 
 
 if __name__ == "__main__":
-    count = 0
+    c = 0
     try:
         for line in stdin:
             try:
-                items = line.split()
-                size += int(items[-1])
-                if items[-2] in status_codes:
-                    status_codes[items[-2]] += 1
+                data = line.split()
+                size += int(data[-1])
+                if data[-2] in stats:
+                    stats[data[-2]] += 1
             except:
                 pass
-            if count == 9:
-                print_stats()
-                count = -1
-            count += 1
+            if c == 9:
+                print_log()
+                c = -1
+            c += 1
     except KeyboardInterrupt:
-        print_stats()
+        print_log()
         raise
-    print_stats()
+    print_log()
