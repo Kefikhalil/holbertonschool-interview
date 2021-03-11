@@ -24,7 +24,7 @@ if __name__ == "__main__":
     try:
         for line in stdin:
             try:
-                items = line.split()
+                data = line.split()
                 size += int(data[-1])
                 if data[-2] in stats:
                     stats[data[-2]] += 1
