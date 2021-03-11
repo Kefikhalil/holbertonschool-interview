@@ -3,38 +3,34 @@
 
 
 import sys
-import signal
 
-def printLog(size, logs):
-    """ print the log """
-    print("File size: {}".format(size))
-    for key, value in sorted(logs.items()):
-        if value != 0:
-            print("{}: {}".format(key, value))
+if __name__ == "__main__":
 
-logs = {
+stats = {
     "200": 0, "301": 0, "400": 0, "401": 0,
     "403": 0, "404": 0, "405": 0, "500": 0}
-c = 0
 size = 0
-try:
-    for line in sys.stdin:
-        if c == 10:
-            printLog(size, logs)
-            c = 1
-        else:
-            c = c + 1
-        parse = line.split()
-        try:
-            size = size + int(parse[-1])
-        except Exception as o:
-            pass
-        try:
-            for key, value in logs.items():
-                if key == parsed[-2]:
-                    logs[key] = logs[key] + 1
-        except Exception as o:
-            pass
-    printLog(size, logs)
-except KeyboardInterrupt as o:
-    printLog(size, logs)
+def print_log():
+    """Prints logs"""
+    print("File size: {}".format(size))
+    for status in sorted(stats.keys()):
+        if stats[status]:
+            print("{}: {}".format(status, stats[status]))
+    c = 0
+    try:
+        for line in stdin:
+            try:
+                items = line.split()
+                size += int(items[-1])
+                if items[-2] in status_codes:
+                    stats[items[-2]] += 1
+            except:
+                pass
+            if c == 9:
+                print_log()
+                c = -1
+            c += 1
+    except KeyboardInterrupt:
+        print_log()
+        raise
+    print_log()
