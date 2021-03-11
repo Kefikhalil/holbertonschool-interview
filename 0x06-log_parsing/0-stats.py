@@ -9,12 +9,16 @@ stats = {
     "200": 0, "301": 0, "400": 0, "401": 0,
     "403": 0, "404": 0, "405": 0, "500": 0}
 size = 0
+
+
 def print_log():
     """Prints logs"""
     print("File size: {}".format(size))
     for status in sorted(stats.keys()):
         if stats[status]:
             print("{}: {}".format(status, stats[status]))
+
+
 if __name__ == "__main__":
     c = 0
     try:
