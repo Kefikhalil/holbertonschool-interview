@@ -10,12 +10,11 @@ def validUTF8(data):
     for num in data:
         i = 1 << 7
         if byte == 0:
-            while  & num:
+            while i & num:
                 byte += 1
                 i = i >> 1
             if byte == 0:
                 continue
-
             if byte == 1 or byte > 4:
                 return False
         else:
