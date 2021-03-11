@@ -24,3 +24,11 @@ static void print_grid(int grid[3][3])
 		printf("\n");
 	}
 }
+
+/**
+ * print_grid - prints a 3x3 grid
+ *
+ * @grid: 3x3 grid
+ *
+ * Return: sum
+ */
