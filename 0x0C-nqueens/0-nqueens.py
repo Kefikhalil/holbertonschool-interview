@@ -19,7 +19,7 @@ print Board
 print(row)
 
 
-def isSafe(board, row, col, number):
+def isSafe(board, row, col, N):
     """
      is safe
     """
@@ -39,17 +39,17 @@ def isSafe(board, row, col, number):
 return True
 
 
-def nQueen(board, col, number):
+def nQueen(board, col, N):
     """n Queen
     """
 
-    if (col >= number):
+    if (col >= N):
         printBoard(board)
 
-    for x in range(number):
-        if isSafe(board, x, col, number):
+    for x in range(N):
+        if isSafe(board, x, col, N):
             board[x][col] = 1
-            if nQueen(board, col+1, number):
+            if nQueen(board, col+1, N):
                 return True
             board[x][col] = 0
 
@@ -68,11 +68,11 @@ def main():
     else:
         print("N must be a number")
         exit(1)
-    if number < 4:
+    if N < 4:
         print("N must be at least 4")
         exit(1)
-    board = [[0 for x in range(number)] for i in range(number)]
-    nQueen(board, 0, number)
+    board = [[0 for x in range(N)] for i in range(N)]
+    nQueen(board, 0, N)
 
 
 if __name__ == '__main__':
