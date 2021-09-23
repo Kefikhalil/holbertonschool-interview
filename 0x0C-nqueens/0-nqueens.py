@@ -8,52 +8,54 @@ import sys
 
 
 def printBoard(board):
-    """
-print Board
+    """print board
+    Args:
+        boardtype
     """
     row = []
     for i in board:
         for y in i:
             if y == 1:
-                row.append([board.index(i), x.index(y)])
-print(row)
+                row.append([board.index(i), i.index(y)])
+    print(row)
 
 
 def isSafe(board, row, col, number):
     """
-     is safe
+    check if safe
     """
     for z in range(col):
-	
+
         if board[row][z] + board[row][z + 1] != 0:
             return False
 
-    for z, f in zip(range(row, -1, -1), range(col, -1, -1)):
-        if board[z][f] == 1:
+    for z, q in zip(range(row, -1, -1), range(col, -1, -1)):
+        if board[z][q] == 1:
             return False
 
-    for z, f in zip(range(row, number, 1), range(col, -1, -1)):
-        if board[z][f] == 1:
+    for z, q in zip(range(row, number, 1), range(col, -1, -1)):
+        if board[i][j] == 1:
             return False
 
-return True
+    return True
 
 
 def nQueen(board, col, number):
-    """n Queen
+    """
+    n Queen
     """
 
     if (col >= number):
         printBoard(board)
 
     for i in range(number):
-        if isSafe(board, x, col, number):
-            board[x][col] = 1
+        if isSafe(board, i, col, number):
+            board[i][col] = 1
             if nQueen(board, col+1, number):
                 return True
-            board[x][col] = 0
+            board[i][col] = 0
 
-return False
+    return False
 
 
 def main():
@@ -68,11 +70,11 @@ def main():
     else:
         print("N must be a number")
         exit(1)
-    if N < 4:
+    if number < 4:
         print("N must be at least 4")
         exit(1)
-    board = [[0 for x in range(N)] for x in range(N)]
-    nQueen(board, 0, N)
+    board = [[0 for i in range(number)] for a in range(number)]
+    nQueen(board, 0, number)
 
 
 if __name__ == '__main__':
