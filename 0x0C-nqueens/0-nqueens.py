@@ -12,12 +12,12 @@ def printBoard(board):
     Args:
         boardtype
     """
-    row = []
+    list = []
     for i in board:
         for y in i:
             if y == 1:
-                row.append([board.index(i), i.index(y)])
-    print(row)
+                list.append([board.index(i), i.index(y)])
+    print(list)
 
 
 def isSafe(board, row, col, number):
