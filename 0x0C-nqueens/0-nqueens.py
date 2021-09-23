@@ -73,7 +73,7 @@ def main():
     if number < 4:
         print("N must be at least 4")
         exit(1)
-    board = [[0 for i in range(number)] for a in range(number)]
+    board = [[0 for i in range(number)] for y in range(number)]
     nQueen(board, 0, number)
 
 
