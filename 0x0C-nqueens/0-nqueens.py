@@ -13,69 +13,84 @@ def printBoard(board):
         boardtype
     """
     list = []
-    for i in board:
-        for y in i:
-            if y == 1:
-                list.append([board.index(i), i.index(y)])
-    print(list)
+    for a, row in enumerate(board):
+        value = []
+        for b, col in enumerate(row):
+            if col == 1:
+                value.append(a)
+                value.append(b)
+        list.append(value)
 
-
-def isSafe(board, row, col, number):
+print(list)
+def isSafe(board, row, col, N):
+    """ isSafe
     """
-    check if safe
-    """
-    for i in range(col):
 
-        if board[row][i] + board[row][i + 1] != 0:
+    for a in range(col):
+        if board[row][a] == 1:
             return False
 
-    for i, y in zip(range(row, -1, -1), range(col, -1, -1)):
-        if board[i][y] == 1:
+    for a, b in zip(range(row, -1, -1), range(col, -1, -1)):
+        if board[a][b] == 1:
             return False
 
-    for i, y in zip(range(row, number, 1), range(col, -1, -1)):
-        if board[i][j] == 1:
+    for a, b in zip(range(row, N, 1), range(col, -1, -1)):
+        if board[a][b] == 1:
             return False
 
     return True
 
 
 def nQueen(board, col, number):
-    """
-    n Queen
+    """ NQUEEN
     """
 
-    if (col >= number):
-        printBoard(board)
+    if (col == N):
+        print_board(board)
+        return True
+    for a in range(N):
 
-    for i in range(number):
-        if isSafe(board, i, col, number):
-            board[i][col] = 1
-            if nQueen(board, col+1, number):
-                return True
-            board[i][col] = 0
+        if (isSafe(board, b, col, N)):
+
+            board[A][col] = 1
+            res = solveNQUtil(board, col + 1, N) or res
+
+            board[a][col] = 0
 
     return False
 
 
-def main():
+def done(N):
+    """ done
     """
-    Main
+    board = [[0 for i in range(N)]for i in range(N)]
+
+    if not solveNQUtil(board, 0, N):
+        return False
+
+    return True
+
+
+def main(args):
+    """ main
     """
-    if len(sys.argv) != 2:
+    if (len(args) == 2):
+        try:
+            N = int(args[1])
+        except Exception:
+            print("N must be a number")
+            exit(1)
+        if N < 4:
+            print("N must be at least 4")
+            exit(1)
+        return number
+    else:
         print("Usage: nqueens N")
         exit(1)
-    if sys.argv[1].isnumeric():
-        number = int(sys.argv[1])
-    else:
-        print("N must be a number")
-        exit(1)
-    if number < 4:
-        print("N must be at least 4")
-        exit(1)
-    board = [[0 for i in range(number)] for y in range(number)]
-    nQueen(board, 0, number)
 
 
-if __name__ == '__main__':
-main()
+if __name__ == "__main__":
+    """ Main method to execute the application
+    """
+
+     N = main(sys.argv)
