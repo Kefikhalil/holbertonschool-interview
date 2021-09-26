@@ -24,16 +24,16 @@ def isSafe(board, row, col, number):
     """
     check if safe
     """
-    for z in range(col):
+    for i in range(col):
 
-        if board[row][z] + board[row][z + 1] != 0:
+        if board[row][i] + board[row][i + 1] != 0:
             return False
 
-    for z, q in zip(range(row, -1, -1), range(col, -1, -1)):
-        if board[z][q] == 1:
+    for i, y in zip(range(row, -1, -1), range(col, -1, -1)):
+        if board[i][y] == 1:
             return False
 
-    for z, q in zip(range(row, number, 1), range(col, -1, -1)):
+    for i, y in zip(range(row, number, 1), range(col, -1, -1)):
         if board[i][j] == 1:
             return False
 
