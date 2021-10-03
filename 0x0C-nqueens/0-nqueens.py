@@ -5,21 +5,25 @@ The N queens puzzle is the challenge of placing N non-attacking queens on an N×
 import sys
 
 
-def boardx(board, row, col):
-    for x in range(col):
-        if y[x] is row or abs(y[x] - row) is abs(x - col):
+def cposition(b, row, col):
+    '''Checks position'''
+    for c in range(col):
+        if b[c] is row or abs(b[c] - row) is abs(c - col):
             return False
-return True
-def check(board, col):
-    n = len(board)
-    if col is i:
-        print(str([[x, board[x]] for x in range(i)]))
+    return True
+
+
+def check(b, col):
+    '''backtracking '''
+    n = len(b)
+    if col is n:
+        print(str([[c, b[c]] for c in range(n)]))
         return
 
-    for row in range(i):
-        if boardx(board, row, col):
-            board[col] = row
-            check(board, col + 1)
+    for row in range(n):
+        if cposition(b, row, col):
+            b[col] = row
+            check(b, col + 1)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -32,5 +36,5 @@ if __name__ == "__main__":
         print("N must be at least 4")
         sys.exit(1)
 
-    board = [0 for col in range(int(sys.argv[1]))]
-check(board, 0)
+    b = [0 for col in range(int(sys.argv[1]))]
+check(b, 0)
