@@ -1,4 +1,5 @@
- puzzle is the challenge
+#!/usr/bin/python3
+ """puzzle is the challenge
 of placing N non-attacking queens on
 an N×N chessboard"""
 import sys
