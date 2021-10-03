@@ -1,40 +1,53 @@
 #!/usr/bin/python3
-"""
-The N queens puzzle is the challenge of placing N non-attacking queens on an N×N chessboard. Write a program that solves the N queens problem.
-"""
+"""nqueens"""
 import sys
 
 
-def cposition(b, row, col):
-    '''Checks position'''
-    for c in range(col):
-        if b[c] is row or abs(b[c] - row) is abs(c - col):
+def start(en):
+    solutions = []
+    for row in range(0, en):
+        solve(en, 0, row, solutions)
+    for solution in solutions:
+        print(solution)
+
+
+def solve(size, col, row, sol_set, sol=[]):
+    e = evaluate(col, row, sol)
+    if e is False:
+        return
+    s = sol.copy()
+    s.append([col, row])
+    if col == size - 1:
+        accept(sol_set, s)
+    for new_row in range(0, size):
+        solve(size, col + 1, new_row, sol_set, s)
+
+
+def evaluate(col, row, sol):
+    for queen in sol:
+        if queen[0] == col or queen[1] == row:
+            return False
+        if queen[0] - queen[1] == col - row:
+            return False
+        if queen[0] + queen[1] == col + row:
             return False
     return True
 
 
-def check(b, col):
-    '''backtracking '''
-    n = len(b)
-    if col is n:
-        print(str([[c, b[c]] for c in range(n)]))
-        return
+def accept(sol_set, sol):
+    sol_set.append(sol)
 
-    for row in range(n):
-        if cposition(b, row, col):
-            b[col] = row
-            check(b, col + 1)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
-    if sys.argv[1].isdigit() is False:
+    try:
+        int(sys.argv[1])
+    except:
         print("N must be a number")
         sys.exit(1)
     if int(sys.argv[1]) < 4:
         print("N must be at least 4")
         sys.exit(1)
-
-    b = [0 for col in range(int(sys.argv[1]))]
-check(b, 0)
+start(int(sys.argv[1]))
