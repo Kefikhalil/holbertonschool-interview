@@ -1,20 +1,28 @@
 #!/usr/bin/python3
-""" 0x10-rain """
+"""rain module"""
 
 
 def rain(walls):
+    """compute the amount of water that it can be stored"""
+    size = len(walls)
 
-    if len(walls) == 0:
+    if walls == [] or sum(walls) == 0:
         return 0
-    water = 0
-    for i in range(1, len(walls) - 1):
-        left = walls[i]
-        for x in range(i):
-            left = max(left, walls[x])
-        right = walls[i]
 
-        for x in range(i + 1, len(walls)):
-            right = max(right, walls[x])
-        water = water + (min(left, right) - walls[i])
+    start = [0]*size
+    end = [0]*size
 
-return water
+    water_count = 0
+
+    start[0] = walls[0]
+    for i in range(1, size):
+        start[i] = max(start[i - 1], walls[i])
+
+    end[size - 1] = walls[size - 1]
+    for i in range(size - 2, -1, -1):
+        end[i] = max(end[i + 1], walls[i])
+
+    for i in range(0, size):
+        water_count += min(start[i], end[i]) - walls[i]
+
+return water_count
