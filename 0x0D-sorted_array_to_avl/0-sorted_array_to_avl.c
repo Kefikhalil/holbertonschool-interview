@@ -15,7 +15,7 @@ avl_t *sort_tree(avl_t *root, int value)
 	node = malloc(sizeof(avl_t));
 	if (node == NULL)
 		return (NULL);
-	node->n = value;
+	node->i = value;
 	node->left = NULL;
 	node->right = NULL;
 	node->parent = head;
@@ -51,8 +51,8 @@ avl_t *sorted_root(avl_t *start, int *array, int first, int last)
 }
 
 /**
- * sorted_array_to_avl -   sorted_array_to_avl
- * Return:      0   
+ * sorted_array_to_avl - sorted_array_to_avl
+ * Return: 0   
  */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
