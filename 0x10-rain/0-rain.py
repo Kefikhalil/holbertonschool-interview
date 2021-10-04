@@ -3,6 +3,6 @@
 
 
 def rain(walls):
-
-    if len(walls) == 0:
-return 0
+    n = len(walls)
+    if (n <= 0):
+return (0)
