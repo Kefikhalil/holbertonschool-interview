@@ -3,7 +3,9 @@
 
 
 def rain(walls):
-    i = len(walls)
-    if (i <= 0):
-return (0)
-water = 0
+
+    if len(walls) == 0:
+        return 0
+    water = 0
+
+return water
