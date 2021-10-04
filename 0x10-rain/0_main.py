@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""main
+"""
+0_main
 """
 rain = __import__('0-rain').rain
 
