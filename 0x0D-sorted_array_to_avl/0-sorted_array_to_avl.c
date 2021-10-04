@@ -1,6 +1,5 @@
 #include "binary_trees.h"
 
-
 /**
  * sort_tree - sort tree
  * @left:       left 
@@ -19,9 +18,9 @@ avl_t *sort_tree(avl_t *root, int value)
 	node->n = value;
 	node->left = NULL;
 	node->right = NULL;
-	node->root = root;
+	node->parent = head;
 
-	return (node);
+return (node);;
 }
 
 
@@ -33,27 +32,27 @@ avl_t *sort_tree(avl_t *root, int value)
  */
 avl_t *sorted_root(avl_t *start, int *array, int first, int last)
 {
-	int mid;
+	int hd;
 	avl_t *root;
 
 	if (first > last)
 		return (NULL);
 
-	mid = (first + last) / 2;
-	root = insert_into_avl(start, array[mid]);
+	hd = (first + last) / 2;
+	root = insert_into_avl(start, array[hd]);
 
 	if (root == NULL)
 		return (NULL);
 
-	root->left = insert_start_end(root, array, first, mid - 1);
-	root->right = insert_start_end(root, array, mid + 1, last);
+	root->left = insert_start_end(root, array, first, hd - 1);
+	root->right = insert_start_end(root, array, hd + 1, last);
 
 	return (root);
 }
 
 /**
- * node_node -   creates a tree node
- * Return:      pointer to tree node
+ * sorted_array_to_avl -   sorted_array_to_avl
+ * Return:      0   
  */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
