@@ -7,20 +7,21 @@ an N×N chessboard
 import sys
 
 
-def Board(board, col, row):
-    for x in range(col):
-        if i[x] is row or abs(i[x] - row) is abs(x - col):
+def Board(board, row, col):
+    for a in range(col):
+        if board[a] is row or abs(board[a] - row) is abs(a - col):
             return False
-return True
+    return True
+
 
 def nqueens(board, col):
-    a = len(board)
-    if col is a:
-        print(str([[x, board[x]] for x in range(a)]))
+    b = len(board)
+    if col is b:
+        print(str([[a, board[a]] for a in range(b)]))
         return
 
-    for row in range(a):
-        if Board(board, col, row):
+    for row in range(b):
+        if Board(board, row, col):
             board[col] = row
             nqueens(board, col + 1)
 
