@@ -16,7 +16,7 @@ return True
 def nqueens(board, col):
     a = len(board)
     if col is a:
-        print(str([[a, board[x]] for c in range(a)]))
+        print(str([[x, board[x]] for x in range(a)]))
         return
 
     for row in range(a):
