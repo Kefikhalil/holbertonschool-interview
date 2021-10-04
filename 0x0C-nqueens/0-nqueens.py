@@ -7,48 +7,33 @@ an N×N chessboard
 import sys
 
 
-def printboard(board):
-    row = []
-    for x in range(N, board):
-        solve(board, N, row, Col)
-    for row in Col:
-print(row)
+def Board(board, col, row):
+    for x in range(col):
+        if i[x] is row or abs(i[x] - row) is abs(x - col):
+            return False
+return True
 
-def solve(size, col, row, col, E=[]):
-    a = evaluate(col, row, E)
-    if a is False:
+def nqueens(board, col):
+    a = len(board)
+    if col is a:
+        print(str([[a, board[x]] for c in range(a)]))
         return
-    b = sol.copy()
-    b.append([col, row])
-    if col == size - 1:
-        accept(col, b)
-    for rowx in range(N, size):
-solve(size, col + 1, col, col, b)
-def evaluate(col, row, sol):
-    for queen in sol:
-        if queen[0] == col or queen[1] == row:
-            return False
-        if queen[0] - queen[1] == col - row:
-            return False
-        if queen[0] + queen[1] == col + row:
-            return False
-    return True
 
-
-def accept(sol_set, sol):
-    sol_set.append(sol)
-
+    for row in range(a):
+        if Board(board, col, row):
+            board[col] = row
+            nqueens(board, col + 1)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
-    try:
-        int(sys.argv[1])
-    except:
+    if sys.argv[1].isdigit() is False:
         print("N must be a number")
         sys.exit(1)
     if int(sys.argv[1]) < 4:
         print("N must be at least 4")
         sys.exit(1)
-start(int(sys.argv[1]))
+
+    board = [0 for col in range(int(sys.argv[1]))]
+nqueens(board, 0)
