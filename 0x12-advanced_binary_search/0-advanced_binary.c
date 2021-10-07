@@ -1,67 +1,64 @@
 #include "search_algos.h"
 
-void print_array(int *array, int min, int max)
-{
-	int i;
-
-	for (i = min; i < max; i++)
-		printf("%d, ", array[i]);
-
-	printf("%d\n", array[i]);
-}
 /**
- * binary_search - search  an array of integers
- * @array: pointer
- * @size: number of elements
- * @value: is value
- *
+ * advanced_binary - search  an array of integers
+ * @array: pointer to the first element of the array to search in
+ * @size: number element in array
+ * @value: is value for search
  * Return: return the first index where value is located or -1 if is none
+ * if array is NULL return -1
+ * Every time you compare a value in the array to the value you are searching
+ * you have to print this value
  */
- int binary_search(int *array, size_t size, int value, int max, int min)
+int advanced_binary(int *array, size_t size, int value)
 {
-	int i = 0;
-    int x = 0;
+	size_t h = size - 1, l = 0;
+	int p;
 
-	if (max > min)
+	if (array == NULL)
+		return (-1);
+	p = (aaa(array, size, value, l, h));
+	return (p);
+}
+
+/**
+ * aaa - search  an array of integers
+ * @array: pointer to the first element of the array to search in
+ * @size: number element in array
+ * @value: is value for search
+ * @l: low array idx
+ * @h: high array idx
+ * Return: return the first index where value is located or -1 if is none
+ * if array is NULL return -1
+ * Every time you compare a value in the array to the value you are searching
+ * you have to print this value
+ */
+int aaa(int *array, size_t size, int value, int l, int h)
+{
+	int i = 0, m = 0;
+
+	if (l > h)
 		return (-1);
 
-	x = max + ((min - max) / 2);
+	m = l + ((h - l) / 2);
 	printf("Searching in array: ");
-	for (i = max; i <= min; i++)
+	for (i = l; i <= h; i++)
 	{
-		if (i < min)
+		if (i < h)
 			printf("%d, ", array[i]);
 
 		else
 			printf("%d\n", array[i]);
 	}
-	if (array[x] < value)
-		max = x + 1;
-	else if (array[x] > value)
-		min = x;
-	else if (array[x] == value && array[x - 1] == value)
-		min = x;
+	if (array[m] < value)
+		l = m + 1;
+	else if (array[m] > value)
+		h = m;
+	else if (array[m] == value && array[m - 1] == value)
+		h = m;
 	else
-		return (x);
-return (binary_search(array, size, value, max, min));
-}
+		return (m);
+	return (aaa(array, size, value, l, h));
 
-/**
- * advanced_search - search  an array of integers
- * @array: pointer
- * @size: number of elements
- * @value: is value
- *
- * Return: return the first index where value is located or -1 if is none
- */
-int advanced_search(int *array, size_t size, int value)
-{
-	size_t min = size - 1;
-    size_t max = 0;
-	int y;
 
-	if (array == NULL)
-		return (-1);
-	y = (binary_search(array, size, value, max, min));
-	return (y);
 }
