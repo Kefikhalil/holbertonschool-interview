@@ -53,6 +53,6 @@ int advanced_search(int *array, size_t size, int value)
 
 	if (array == NULL)
 		return (-1);
-	y = (aaa(array, size, value, max, min));
+	y = (binary_search(array, size, value, max, min));
 	return (y);
 }
