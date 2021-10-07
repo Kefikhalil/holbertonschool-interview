@@ -1,5 +1,14 @@
 #include "search_algos.h"
 
+void print_array(int *array, int min, int max)
+{
+	int i;
+
+	for (i = min; i < max; i++)
+		printf("%d, ", array[i]);
+
+	printf("%d\n", array[i]);
+}
 /**
  * binary_search - search  an array of integers
  * @array: pointer
