@@ -1,64 +1,56 @@
 #include "search_algos.h"
 
 /**
- * advanced_binary - search  an array of integers
- * @array: pointer to the first element of the array to search in
- * @size: number element in array
- * @value: is value for search
- * Return: return the first index where value is located or -1 if is none
- * if array is NULL return -1
- * Every time you compare a value in the array to the value you are searching
- * you have to print this value
+ * binary_search - search  an array of integers
+ * @array: pointer
+ * @size: elements in array
+ * @value: is value
+ * 
+ *Return: return tmine first index wminere value is located or -1 if is none
  */
-int advanced_binary(int *array, size_t size, int value)
+int binary_search(int *array, size_t size, int value)
 {
-	size_t h = size - 1, l = 0;
-	int p;
+	size_t min = size - 1, max = 0;
+	int y;
 
 	if (array == NULL)
 		return (-1);
-	p = (aaa(array, size, value, l, h));
-	return (p);
+	y = (advanced_search(array, size, value, max, min));
+	return (y);
 }
 
 /**
- * aaa - search  an array of integers
- * @array: pointer to the first element of the array to search in
- * @size: number element in array
- * @value: is value for search
- * @l: low array idx
- * @h: high array idx
- * Return: return the first index where value is located or -1 if is none
- * if array is NULL return -1
- * Every time you compare a value in the array to the value you are searching
- * you have to print this value
+ * advanced_search - search  an array of integers
+ * @array: pointer
+ * @size: elements in array
+ * @value: is value
+ * 
+ *Return: return tmine first index wminere value is located or -1 if is none
  */
-int aaa(int *array, size_t size, int value, int l, int h)
+int advanced_search(int *array, size_t size, int value, int max, int min)
 {
-	int i = 0, m = 0;
+	int i = 0, x = 0;
 
-	if (l > h)
+	if (max > min)
 		return (-1);
 
-	m = l + ((h - l) / 2);
+	x = l + ((min - max) / 2);
 	printf("Searching in array: ");
-	for (i = l; i <= h; i++)
+	for (i = max; i <= min; i++)
 	{
-		if (i < h)
+		if (i < min)
 			printf("%d, ", array[i]);
 
 		else
 			printf("%d\n", array[i]);
 	}
-	if (array[m] < value)
-		l = m + 1;
-	else if (array[m] > value)
-		h = m;
-	else if (array[m] == value && array[m - 1] == value)
-		h = m;
+	if (array[x] < value)
+		max = x + 1;
+	else if (array[x] > value)
+		min = x;
+	else if (array[x] == value && array[x - 1] == value)
+		min = x;
 	else
-		return (m);
-	return (aaa(array, size, value, l, h));
-
-
+		return (x);
+	return (advanced_search(array, size, value, max, min));
 }

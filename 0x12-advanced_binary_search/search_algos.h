@@ -1,11 +1,11 @@
-#ifndef _A_H_
-#define _A_H_
+#ifndef _search_algos_
+#define _search_algos_
 
 #include <stdio.h>
 
-int advanced_binary(int *array, size_t size, int value);
-int aaa(int *array, size_t size, int value, int l, int h);
+int binary_search(int *array, size_t size, int value);
+int advanced_search(int *array, size_t size, int value, int max, int min);
 
 
 
-#endif /* _A_H_ */
+#endif /* _search_algos_ */
