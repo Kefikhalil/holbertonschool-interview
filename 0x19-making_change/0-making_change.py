@@ -6,21 +6,14 @@ Make a change
 def makeChange(coins, total):
     """Coins, total
     """
+    coinsCombination = 0
     if total <= 0:
         return 0
-    if len(coins) <= 0:
+    coins.sort()
+    coins.reverse()
+    for c in coins:
+        coinsCombination += total // c
+        total = total % c
+    if (total != 0):
         return -1
-
-    fla = sorted(coins)
-    fla = fla[::-1]
-
-    coins = 0
-    xx = total
-    for c in fla:
-        while (xx - c >= 0):
-            xx = xx - c
-            coins = coins + 1
-
-    if xx != 0 and xx - fla[-1] < 0:
-        return -1
-return coins
+return coinsCombination
