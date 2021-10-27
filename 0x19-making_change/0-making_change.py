@@ -6,14 +6,13 @@ Make a change
 def makeChange(coins, total):
     """Coins, total
     """
-    coinsCombination = 0
-    if total <= 0:
-        return 0
-    coins.sort()
-    coins.reverse()
-    for c in coins:
-        coinsCombination += total // c
-        total = total % c
-    if (total != 0):
-        return -1
-return coinsCombination
+    if (total <= 0):
+        return (0)
+    coins = reversed(sorted(coins))
+    sm = 0
+    for i in coins:
+        sm += int(total / i)
+        total -= int(total / i) * i
+        if (total == 0):
+            return (sm)
+return (-1)
