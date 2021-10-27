@@ -11,16 +11,16 @@ def makeChange(coins, total):
     if len(coins) <= 0:
         return -1
 
-    coins = sorted(coins)
-    coins = coins[::-1]
+    fla = sorted(coins)
+    fla = fla[::-1]
 
     coins = 0
-    x = total
-    for y in coins:
-        while (x - y >= 0):
-            x = x - y
+    xx = total
+    for c in fla:
+        while (xx - c >= 0):
+            xx = xx - c
             coins = coins + 1
 
-    if x != 0 and x - coins[-1] < 0:
+    if xx != 0 and xx - fla[-1] < 0:
         return -1
 return coins
