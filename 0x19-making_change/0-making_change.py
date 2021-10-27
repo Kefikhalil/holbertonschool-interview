@@ -1,19 +1,24 @@
 #!/usr/bin/python3
-"""
-Make a change
-"""
+"""Mao Coins"""
 
 
 def makeChange(coins, total):
-    """Coins, total
-    """
-    if (total <= 0):
-        return (0)
-    coins = reversed(sorted(coins))
-    sm = 0
-    for i in coins:
-        sm += int(total / i)
-        total -= int(total / i) * i
-        if (total == 0):
-            return (sm)
-return (-1)
+    """Tell coins required for a sum"""
+    if total <= 0:
+        return 0
+    if len(coins) <= 0:
+        return -1
+
+    fla = sorted(coins)
+    fla = fla[::-1]
+
+    coins = 0
+    xx = total
+    for c in fla:
+        while (xx - c >= 0):
+            xx = xx - c
+            coins = coins + 1
+
+    if xx != 0 and xx - fla[-1] < 0:
+        return -1
+return coins
