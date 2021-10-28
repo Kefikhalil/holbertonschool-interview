@@ -13,7 +13,7 @@ def makeChange(coins, total):
     coins.sort()
     coins.reverse()
     for x in coins:
-        coinsum += total // x
+        coinsum += total
         total = total % x
     if (total != 0):
         return -1
