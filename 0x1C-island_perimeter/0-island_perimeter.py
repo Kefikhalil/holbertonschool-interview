@@ -20,4 +20,4 @@ def island_perimeter(grid):
                     p = p + 1
                 if(z == y-1 or grid[i][z+1] == 0):
                     p = p + 1
-return p
+    return p
