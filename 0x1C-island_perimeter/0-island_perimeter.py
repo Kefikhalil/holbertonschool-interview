@@ -6,16 +6,18 @@
 def island_perimeter(grid):
     """perimeter's length
     """
-    perimeter = 0
-    for x, row in enumerate(grid):
-        for z, cell in enumerate(row):
-            if cell == 1:
-                if x == 0 or grid[x - 1][z] == 0:
-                    perimeter += 1
-                if x == len(grid) - 1 or grid[x + 1][z] == 0:
-                    perimeter += 1
-                if z == 0 or grid[x][z - 1] == 0:
-                    perimeter += 1
-                if z == len(row) - 1 or grid[x][z + 1] == 0:
-                    perimeter += 1
-return perimeter
+    p = 0
+    x = len(grid)
+    y = len(grid[0])
+    for i in range(x):
+        for z in range(y):
+            if(grid[i][z] == 1):
+                if(i == 0 or grid[i-1][z] == 0):
+                    p = p + 1
+                if(i == x-1 or grid[i+1][z] == 0):
+                    p = p + 1
+                if(z == 0 or grid[i][z-1] == 0):
+                    p = p + 1
+                if(z == y-1 or grid[i][z+1] == 0):
+                    p = p + 1
+return p
