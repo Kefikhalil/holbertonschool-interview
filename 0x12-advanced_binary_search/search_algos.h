@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 
-int binary_search(int *array, size_t size, int value);
-int advanced_search(int *array, size_t size, int value, int max, int min);
+int advanced_binary(int *array, size_t size, int value);
+int binary_search(int *array, size_t size, int value, int l, int d);
 
 
 

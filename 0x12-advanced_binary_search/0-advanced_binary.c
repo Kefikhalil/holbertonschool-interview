@@ -6,17 +6,35 @@
  * @size: elements in array
  * @value: is value
  * 
- *Return: return tmine first index wminere value is located or -1 if is none
+ *Return: 0
  */
-int binary_search(int *array, size_t size, int value)
+int binary_search(int *array, size_t size, int value, int l, int d)
 {
-	size_t min = size - 1, max = 0;
-	int y;
+	int x = 0, y = 0;
 
-	if (array == NULL)
+	if (l > d)
 		return (-1);
-	y = (advanced_search(array, size, value, max, min));
-	return (y);
+
+	y = l + ((d - l) / 2);
+	printf("Searching in array: ");
+	for (x = l; i <= d; x++)
+	{
+		if (x < d)
+			printf("%d, ", array[x]);
+
+		else
+			printf("%d\n", array[x]);
+	}
+	if (array[y] < value)
+		l = y + 1;
+	else if (array[y] > value)
+		d = y;
+	else if (array[y] == value && array[y - 1] == value)
+		d = y;
+	else
+		return (y);
+	return (binary_search(array, size, value, l, d));
+
 }
 
 /**
@@ -25,32 +43,15 @@ int binary_search(int *array, size_t size, int value)
  * @size: elements in array
  * @value: is value
  * 
- *Return: return tmine first index wminere value is located or -1 if is none
+ *Return:0
  */
-int advanced_search(int *array, size_t size, int value, int max, int min)
+int advanced_binary(int *array, size_t size, int value)
 {
-	int i = 0, x = 0;
+	size_t d = size - 1, l = 0;
+	int p;
 
-	if (max > min)
+	if (array == NULL)
 		return (-1);
-
-	x = l + ((min - max) / 2);
-	printf("Searching in array: ");
-	for (i = max; i <= min; i++)
-	{
-		if (i < min)
-			printf("%d, ", array[i]);
-
-		else
-			printf("%d\n", array[i]);
-	}
-	if (array[x] < value)
-		max = x + 1;
-	else if (array[x] > value)
-		min = x;
-	else if (array[x] == value && array[x - 1] == value)
-		min = x;
-	else
-		return (x);
-	return (advanced_search(array, size, value, max, min));
+	p = (binary_search(array, size, value, l, d));
+	return (p);
 }
