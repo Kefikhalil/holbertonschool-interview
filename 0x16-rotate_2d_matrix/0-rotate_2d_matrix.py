@@ -1,17 +1,15 @@
 #!/usr/bin/python3
-"""
-Rotate a 2d matrix
+"""Rotate 2D Matrix
 """
 
 
 def rotate_2d_matrix(matrix):
+    """ Rotate 90° matrix
     """
-    rotate
-    """
-    temp = matrix.copy()        
+    temp = matrix.copy()
     matrix.clear()
-    for x in range(len(temp[0])):
-        y = []
-        for i in reversed(range(len(temp))):
-            y.append(temp[i][x])
-matrix.append(y)
+    for i in range(len(temp[0])):
+        t = []
+        for z in reversed(range(len(temp))):
+            t.append(temp[z][i])
+        matrix.append(t)
