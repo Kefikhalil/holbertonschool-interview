@@ -1,21 +1,17 @@
 #include "binary_trees.h"
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 /**
  * sorted_array_to_avl - AVL tree from sorted array
  *
  * @array: array
- * @size: size of array
+ * @size: size
  *
- * Return: Pointer to tree
+ * Return: 0
  */
 
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
-	avl_t *rightn, *rightn, *node = NULL;
+	avl_t *rightnode, *leftnode, *node = NULL;
 	size_t mid;
 
 	if (size == 0 || !array)
@@ -27,15 +23,15 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	node->n = array[mid];
 	node->parent = NULL;
 	if (mid > 0)
-		rightn = sorted_array_to_avl(array, mid);
+		leftnode = sorted_array_to_avl(array, mid);
 	else
-		rightn = NULL;
+		leftnode = NULL;
 	if (size > (mid + 1))
-		rightn = sorted_array_to_avl(&array[mid + 1], size - (mid + 1));
+		rightnode = sorted_array_to_avl(&array[mid + 1], size - (mid + 1));
 	else
-		rightn = NULL;
-	node->left = rightn;
-	node->right = rightn;
+		rightnode = NULL;
+	node->left = leftnode;
+	node->right = rightnode;
 	if (node->left)
 		(node->left)->parent = node;
 	if (node->right)
