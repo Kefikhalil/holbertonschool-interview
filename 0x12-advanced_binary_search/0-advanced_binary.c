@@ -1,57 +1,69 @@
 #include "search_algos.h"
 
 /**
- * binary_search - search  an array of integers
+ * form_array - prints array
  * @array: pointer
- * @size: elements in array
- * @value: is value
- * 
- *Return: 0
+ * @min: min
+ * @max: max
+ *
+ * Return: 0
  */
-int binary_search(int *array, size_t size, int value, int l, int d)
+void form_array(int *array, int min, int max)
 {
-	int x = 0, y = 0;
+	int x;
 
-	if (l > d)
+	for (x = min; x < max; x++)
+		printf("%d, ", array[x]);
+
+	printf("%d\n", array[x]);
+}
+/**
+ * Search_Binary - binary search
+ * @array: pointer
+ * @min: min
+ * @max: max
+ * @binary: value
+ *
+ * Return: 0
+ */
+int Search_Binary(int *array, int min, int max, int value)
+{
+	int m;
+
+	if (min > max)
 		return (-1);
 
-	y = l + ((d - l) / 2);
 	printf("Searching in array: ");
-	for (x = l; i <= d; x++)
-	{
-		if (x < d)
-			printf("%d, ", array[x]);
+	form_array(array, min, max);
 
-		else
-			printf("%d\n", array[x]);
-	}
-	if (array[y] < value)
-		l = y + 1;
-	else if (array[y] > value)
-		d = y;
-	else if (array[y] == value && array[y - 1] == value)
-		d = y;
-	else
-		return (y);
-	return (binary_search(array, size, value, l, d));
+	if (min == max && array[max] == value)
+		return (max);
 
+	if (min == max && array[max] != value)
+		return (-1);
+
+	m = min + (max - min) / 2;
+
+	if ((m == min || value != array[m - 1]) && array[m] == value)
+		return (m);
+
+	if (array[m] >= value)
+		return (Search_Binary(array, min, m, value));
+	return (Search_Binary(array, m + 1, max, value));
 }
-
 /**
- * advanced_search - search  an array of integers
+ * advanced_binary - sadvanced_binary
  * @array: pointer
- * @size: elements in array
- * @value: is value
- * 
- *Return:0
+ * @size: size
+ * @value: value
+ *
+ * Return: 0
  */
 int advanced_binary(int *array, size_t size, int value)
 {
-	size_t d = size - 1, l = 0;
-	int p;
 
-	if (array == NULL)
+	if (!array || size == 0)
 		return (-1);
-	p = (binary_search(array, size, value, l, d));
-	return (p);
+
+	return (Search_Binary(array, 0, size - 1, value));
 }
