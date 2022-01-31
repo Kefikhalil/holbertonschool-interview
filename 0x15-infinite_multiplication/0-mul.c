@@ -3,14 +3,14 @@
 #include <string.h>
 
 /**
- * is_error - error checker
- * @argc: number of arguments
- * @argv: an array consisting arguments
+ * check_error - error checker
+ * @argc: arguments
+ * @argv: array
  *
- * Return: 0 on  succsess
+ * Return: 0
  */
 
-int is_error(int argc, char **argv)
+int check_error(int argc, char **argv)
 {
 	int abc, abcd;
 
@@ -23,7 +23,7 @@ int is_error(int argc, char **argv)
 	{
 		for (abcd = 0; argv[abc][abcd]; abcd++)
 		{
-			abcf (argv[abc][abcd] > '9' || argv[abc][abcd] < '0')
+			if (argv[abc][abcd] > '9' || argv[abc][abcd] < '0')
 			{
 				printf("Error\n");
 				exit(98);
@@ -34,9 +34,9 @@ int is_error(int argc, char **argv)
 }
 
 /**
- * main - entry point
+ * main - main
  * @argc: number of arguments
- * @argv: an array consisting arguments
+ * @argv: array
  *
  * Return: 0
  */
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 	int one, two, three, a, b, abc, abcd;
 	int *result;
 
-	is_error(argc, argv);
+	check_error(argc, argv);
 	one = strlen(argv[1]), two = strlen(argv[2]);
 	if (argv[1][0] == '0' || argv[2][0] == '0')
 	{
