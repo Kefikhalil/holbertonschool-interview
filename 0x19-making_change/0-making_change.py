@@ -1,20 +1,26 @@
 #!/usr/bin/python3
-"""
-Make change
+"""Coins
 """
 
 
 def makeChange(coins, total):
-    """mage change
+    """make change
     """
-    coinsum = 0
     if total <= 0:
         return 0
-    coins.sort()
-    coins.reverse()
-    for x in coins:
-        coinsum += total
-        total = total % x
-    if (total != 0):
+    if len(coins) <= 0:
         return -1
-return coinsum
+
+    change = sorted(coins)
+    change = change[::-1]
+
+    coins = 0
+    i = total
+    for c in change:
+        while (i - c >= 0):
+            i = i - c
+            coins = coins + 1
+
+    if i != 0 and i - change[-1] < 0:
+        return -1
+    return coins
