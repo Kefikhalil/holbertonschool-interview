@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""count it
+"""Count it
 """
 
 import pprint
@@ -10,7 +10,8 @@ url = 'http://reddit.com/r/{}/hot.json'
 
 
 def count_words(subreddit, word_list, hot_list=[], after=None):
-    '''count elements'''
+    '''count words
+    '''
     headers = {'User-agent': 'khalil'}
     params = {'limit': 100}
     if isinstance(after, str):
@@ -32,8 +33,9 @@ def count_words(subreddit, word_list, hot_list=[], after=None):
     return count_words(subreddit, word_list, hot_list, after)
 
 
-def print_lists(word_list, hot_list):
-    '''Print list'''
+def print_results(word_list, hot_list):
+    '''Prints request
+    '''
     count = {}
     for word in word_list:
         count[word] = 0
@@ -45,5 +47,6 @@ def print_lists(word_list, hot_list):
 
     count = {k: v for k, v in count.items() if v > 0}
     words = list(count.keys())
-    for word in sorted(words, reverse=True, key=lambda k: count[k]):
+    for word in sorted(words,
+                       reverse=True, key=lambda k: count[k]):
         print("{}: {}".format(word, count[word]))
