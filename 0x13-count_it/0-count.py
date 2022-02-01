@@ -9,7 +9,7 @@ import requests
 url = 'http://reddit.com/r/{}/hot.json'
 
 
-def count_elements(subreddit, word_list, hot_list=[], after=None):
+def count_words(subreddit, word_list, hot_list=[], after=None):
     '''count elements'''
     headers = {'User-agent': 'khalil'}
     params = {'limit': 100}
@@ -29,7 +29,7 @@ def count_elements(subreddit, word_list, hot_list=[], after=None):
         after = "STOP"
     hot_list = hot_list + [post.get('data', {}).get('title')
                            for post in data.get('children', [])]
-    return count_elements(subreddit, word_list, hot_list, after)
+    return count_words(subreddit, word_list, hot_list, after)
 
 
 def print_lists(word_list, hot_list):
