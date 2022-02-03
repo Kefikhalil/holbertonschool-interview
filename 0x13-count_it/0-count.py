@@ -2,51 +2,51 @@
 """Count it
 """
 
-import pprint
+import json
 import re
 import requests
-
-url = 'http://reddit.com/r/{}/hot.json'
-
-
-def count_words(subreddit, word_list, hot_list=[], after=None):
-    '''count words
-    '''
-    headers = {'User-agent': 'khalil'}
-    params = {'limit': 100}
-    if isinstance(after, str):
-        if after != "STOP":
-            params['after'] = after
-        else:
-            return print_results(word_list, hot_list)
-
-    response = requests.get(url.format(subreddit),
-                            headers=headers, params=params)
-    if response.status_code != 200:
-        return None
-    data = response.json().get('data', {})
-    after = data.get('after', 'STOP')
-    if not after:
-        after = "STOP"
-    hot_list = hot_list + [post.get('data', {}).get('title')
-                           for post in data.get('children', [])]
-    return count_words(subreddit, word_list, hot_list, after)
+import time
 
 
-def print_results(word_list, hot_list):
-    '''Prints request
-    '''
-    count = {}
-    for word in word_list:
-        count[word] = 0
-    for title in hot_list:
-        for word in word_list:
-            for title_word in title.lower().split():
-                if title_word == word.lower():
-                    count[word] += 1
+def count_elements(request, word_list, results):
+    """ Count elements"""
+    for title in request['data']['children']:
+        datas = title['data']['title'].split(" ")
+        for i in range(len(datas)):
+            datas[i] = datas[i].lower()
+            if (datas[i] in word_list):
+                if (datas[i] in results.keys()):
+                    results[datas[i]] += word_list.count(datas[i])
+                else:
+                    results[datas[i]] = word_list.count(datas[i])
+    return results
 
-    count = {k: v for k, v in count.items() if v > 0}
-    words = list(count.keys())
-    for word in sorted(words,
-                       reverse=True, key=lambda k: count[k]):
-        print("{}: {}".format(word, count[word]))
+
+def count_words(subreddit, word_list, results={}, param={'limit': 100}):
+    """ Main function to count and print the words """
+    baseLink = 'https://api.reddit.com/r/%s/hot.json' % subreddit
+
+    if ('after' not in param):
+        word_list = [str.lower() for str in word_list]
+
+    link = baseLink
+    customHeaders = {'User-agent': 'HolbertonSchoolTask'}
+    r = requests.get(link, headers=customHeaders,
+                     params=param, allow_redirects=False)
+
+    if (r.status_code != 200):
+        return
+    data = r.content
+
+    data = json.loads(data.decode('utf-8'))
+    param = {'limit': 100, 'count': 100, 'after': data['data'].get('after')}
+    if (data['data'].get('after') is None):
+        results = count_elements(data, word_list, results)
+        results = sorted(
+            results.items(), key=lambda x: (-x[1], x[0]), reverse=False
+            )
+        for i in results:
+            print("{}: {}".format(i[0], i[1]))
+    else:
+        results = count_elements(data, word_list, results)
+        count_words(subreddit, word_list, results, param)
